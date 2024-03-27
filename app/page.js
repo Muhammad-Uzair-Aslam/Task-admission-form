@@ -3,38 +3,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function Home() {
-  let [data,setData]=useState([])
-  const start={
-    name:"",
-    email:"",
-    password:"",
-    gender:"",
-    number:0,
-    course:"",
-    degree:"",
-    address:"",
-    profilePicture:null,
-    file:null
-  }
-  let [value,setValue]=useState(start)
-  const onChangeHandler = (e) => {
-    if (e.target.type === "file") {
-      setValue((a) => ({
-        ...a,
-        [e.target.name]: e.target.files[0]
-      }));
-    } else {
-      setValue((a) => ({
-        ...a,
-        [e.target.name]: e.target.value
-      }));
-    }
-  };
-  const clickHandler=(e)=>{
-    e.preventDefault()
-    setData((a)=>[...a,value])
-    setValue(start)
-  }
+  
   return (
     <div>
     <div className="max-w-xl mx-auto p-6">
@@ -120,7 +89,43 @@ export default function Home() {
       </div>
       <br/>
         <hr/>
-    
+        <div className='container mx-auto p-8'>
+        <div className='mt-10 overflow-x-auto '>
+            <table className='min-w-full'>
+                <thead>
+                <tr>
+                    <th className='px-6 py-3 border-b border-gray-300 bg-gray-100 text-left text-lg leading-4 font-medium text-gray-600 uppercase '>#</th>
+                    <th className='px-6 py-3 border-b border-gray-300 bg-gray-100 text-left text-lg leading-4 font-medium text-gray-600 uppercase '>Name</th>
+                    <th className='px-6 py-3 border-b border-gray-300 bg-gray-100 text-left text-lg leading-4 font-medium text-gray-600 uppercase '>Email</th>
+                    <th className='px-6 py-3 border-b border-gray-300 bg-gray-100 text-left text-lg leading-4 font-medium text-gray-600 uppercase '>Password</th>
+                    <th className='px-6 py-3 border-b border-gray-300 bg-gray-100 text-left text-lg leading-4 font-medium text-gray-600 uppercase '>Gender</th>
+                    <th className='px-6 py-3 border-b border-gray-300 bg-gray-100 text-left text-lg leading-4 font-medium text-gray-600 uppercase '>Number</th>
+                    <th className='px-6 py-3 border-b border-gray-300 bg-gray-100 text-left text-lg leading-4 font-medium text-gray-600 uppercase '>Degree</th>
+                    <th className='px-6 py-3 border-b border-gray-300 bg-gray-100 text-left text-lg leading-4 font-medium text-gray-600 uppercase '>Address</th>
+                    <th className='px-6 py-3 border-b border-gray-300 bg-gray-100 text-left text-lg leading-4 font-medium text-gray-600 uppercase '>Courses</th>
+                    <th className='px-6 py-3 border-b border-gray-300 bg-gray-100 text-left text-lg leading-4 font-medium text-gray-600 uppercase '>Picture</th>
+                    <th className='px-6 py-3 border-b border-gray-300 bg-gray-100 text-left text-lg leading-4 font-medium text-gray-600 uppercase '>File</th>
+                </tr>
+                </thead>
+                <tbody>
+                { data.map((element ,i)=>{
+                    return(<tr key={i} >
+                    <td className='px-6 py-3 border-b text-lg border-gray-300 text-left leading-4 text-gray-600'>{i+1}</td>
+                    <td className='px-6 py-3 border-b text-lg border-gray-300 text-left leading-4 text-gray-600'>{element.name}</td>
+                    <td className='px-6 py-3 border-b text-lg border-gray-300 text-left leading-4 text-gray-600'>{element.email}</td>
+                    <td className='px-6 py-3 border-b text-lg border-gray-300 text-left leading-4 text-gray-600'>{element.password}</td>
+                    <td className='px-6 py-3 border-b text-lg border-gray-300 text-left leading-4 text-gray-600'>{element.gender}</td>
+                    <td className='px-6 py-3 border-b text-lg border-gray-300 text-left leading-4 text-gray-600'>{element.number}</td>
+                    <td className='px-6 py-3 border-b text-lg border-gray-300 text-left leading-4 text-gray-600'>{element.degree}</td>
+                    <td className='px-6 py-3 border-b text-lg border-gray-300 text-left leading-4 text-gray-600'>{element.address}</td>
+                    <td className='px-6 py-3 border-b text-lg border-gray-300 text-left leading-4 text-gray-600'>{element.course}</td>
+                    <td className='px-6 py-3 border-b text-lg border-gray-300 text-left leading-4 text-gray-600'>{element.profilePicture&&<Image src={URL.createObjectURL(element.profilePicture)} width={40} height={40}/>}</td>
+                    <td className='px-6 py-3 border-b text-lg border-gray-300 text-left leading-4 text-gray-600'>{element.file && <a href={URL.createObjectURL(element.file)} download>Download file</a>}</td>
+                </tr>)})}
+                </tbody>
+            </table>
+        </div>
+        </div>
     </div>
     
   );
