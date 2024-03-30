@@ -9,7 +9,7 @@ export default function Home() {
     email:"",
     password:"",
     gender:"",
-    number:0,
+    number:null,
     course:"",
     degree:"",
     address:"",
@@ -28,36 +28,44 @@ export default function Home() {
         ...a,
         [e.target.name]: e.target.value
       }));
+      console.log(e.target.value)
     }
   };
   const clickHandler=(e)=>{
     e.preventDefault()
+    if(value.name===""||
+      value.address===""||
+      value.course===""||value.email===""||value.file===null||value.degree===""||value.gender===""||value.password===""||value.profilePicture===null||value.number===null){
+      alert("Please Fill all the required fields")
+    }
+    else{
     setData((a)=>[...a,value])
+    }
     setValue(start)
   }
   return (
     <div>
     <div className="max-w-xl mx-auto p-6">
       <h1 className="text-4xl py-3 font-bold text-center">Admission Form</h1>
-      <form className="space-y-4">
+      <form className="space-y-4" onSubmit={clickHandler}>
         <div className="flex flex-col sm:flex-row items-center">
           <label  className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="name">Full Name</label>
-          <input name="name" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" id="name" type="text" />
+          <input value={value.name} name="name" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" id="name" type="text" />
         </div>
         <div className="flex flex-col sm:flex-row items-center">
           <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="email">Email</label>
-          <input name="email" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="email" id="email" />
+          <input value={value.email} name="email" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="email" id="email" />
         </div>
         <div className="flex flex-col sm:flex-row items-center">
           <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="password">Password</label>
-          <input name="password" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="password" id="password" />
+          <input value={value.password} name="password" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="password" id="password" />
         </div>
         <div className="flex flex-col sm:flex-row items-center">
           <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="gender">Gender</label>
           <div className="flex items-center space-x-4 w-full sm:w-60">
-            <div className="flex items-center">
-              <input onChange={onChangeHandler} className="form-radio text-blue-600" type="radio" name="gender" value="Male" id="male" />
-              <label htmlFor="male" className="ml-2">Male</label>
+            <div  className="flex items-center">
+              <input  onChange={onChangeHandler} className="form-radio text-blue-600" type="radio" name="gender" value="Male" id="male" />
+              <label  htmlFor="male" className="ml-2">Male</label>
             </div>
             <div className="flex items-center">
               <input onChange={onChangeHandler} className="form-radio text-blue-600" type="radio" name="gender" value="Female" id="female" />
@@ -71,7 +79,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col sm:flex-row items-center">
           <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="number">Mobile Number</label>
-          <input name="number" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="number" id="number" />
+          <input value={value.number} name="number" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="number" id="number" />
         </div>
         <div className="flex flex-col sm:flex-row items-center">
           <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="degree">Degree</label>
@@ -103,7 +111,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col sm:flex-row items-center">
           <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="address">Address</label>
-          <input name="address" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="text" id="address" />
+          <input value={value.address} name="address" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="text" id="address" />
         </div>
         <div className="flex flex-col sm:flex-row items-center">
           <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="pic">Profile Picture</label>
@@ -111,16 +119,17 @@ export default function Home() {
         </div>
         <div className="flex flex-col sm:flex-row items-center">
           <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="cert">Add Intermediate Certificate</label>
-          <input name="file" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="file" id="cert" />
+          <input  name="file" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="file" id="cert" />
         </div>
         <div className="text-center">
-          <button onClick={clickHandler} className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Submit</button>
+          <button type="submit" className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Submit</button>
         </div>
       </form>
       </div>
       <br/>
         <hr/>
         <div className='container mx-auto p-8'>
+          {data.length>0 &&
         <div className='mt-10 overflow-x-auto '>
             <table className='min-w-full'>
                 <thead>
@@ -150,13 +159,14 @@ export default function Home() {
                     <td className='px-6 py-3 border-b text-lg border-gray-300 text-left leading-4 text-gray-600'>{element.degree}</td>
                     <td className='px-6 py-3 border-b text-lg border-gray-300 text-left leading-4 text-gray-600'>{element.address}</td>
                     <td className='px-6 py-3 border-b text-lg border-gray-300 text-left leading-4 text-gray-600'>{element.course}</td>
-                    <td className='px-6 py-3 border-b text-lg border-gray-300 text-left leading-4 text-gray-600'>{element.profilePicture&&<Image src={URL.createObjectURL(element.profilePicture)} width={40} height={40}/>}</td>
+                    <td className='px-6 py-3 border-b text-lg border-gray-300 text-left leading-4 text-gray-600'>{element.profilePicture&&<Image className="w-14 h-14 rounded-full" src={URL.createObjectURL(element.profilePicture)} width={40} height={40}/>}</td>
                     <td className='px-6 py-3 border-b text-lg border-gray-300 text-left leading-4 text-gray-600'>{element.file && <a href={URL.createObjectURL(element.file)} download>Download file</a>}</td>
                 </tr>)})}
                 </tbody>
             </table>
+        </div>}
         </div>
-        </div>
+        
     </div>
     
   );
