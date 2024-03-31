@@ -50,25 +50,25 @@ export default function Home() {
       <form className="space-y-4" onSubmit={clickHandler}>
         <div className="flex flex-col sm:flex-row items-center">
           <label  className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="name">Full Name</label>
-          <input value={value.name} name="name" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" id="name" type="text" />
+          <input value={value.name} name="name" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" id="name" type="text" required />
         </div>
         <div className="flex flex-col sm:flex-row items-center">
           <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="email">Email</label>
-          <input value={value.email} name="email" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="email" id="email" />
+          <input value={value.email} name="email" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="email" id="email" required/>
         </div>
         <div className="flex flex-col sm:flex-row items-center">
           <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="password">Password</label>
-          <input value={value.password} name="password" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="password" id="password" />
+          <input value={value.password} name="password" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="password" id="password" required/>
         </div>
         <div className="flex flex-col sm:flex-row items-center">
-          <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="gender">Gender</label>
+          <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="gender" >Gender</label>
           <div className="flex items-center space-x-4 w-full sm:w-60">
             <div  className="flex items-center">
-              <input  onChange={onChangeHandler} className="form-radio text-blue-600" type="radio" name="gender" value="Male" id="male" />
+              <input  onChange={onChangeHandler} className="form-radio text-blue-600" type="radio" name="gender" value="Male" id="male"/>
               <label  htmlFor="male" className="ml-2">Male</label>
             </div>
             <div className="flex items-center">
-              <input onChange={onChangeHandler} className="form-radio text-blue-600" type="radio" name="gender" value="Female" id="female" />
+              <input onChange={onChangeHandler} className="form-radio text-blue-600" type="radio" name="gender" value="Female" id="female"  />
               <label htmlFor="female" className="ml-2">Female</label>
             </div>
             <div className="flex items-center">
@@ -79,11 +79,11 @@ export default function Home() {
         </div>
         <div className="flex flex-col sm:flex-row items-center">
           <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="number">Mobile Number</label>
-          <input value={value.number} name="number" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="number" id="number" />
+          <input value={value.number} name="number" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="number" id="number" required/>
         </div>
         <div className="flex flex-col sm:flex-row items-center">
           <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="degree">Degree</label>
-          <select name="degree" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" id="degree">
+          <select name="degree" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" id="degree" required>
             <option value="">Select Degree</option>
             <option value="BSSE">BS Software Engineering</option>
             <option value="BSCS">BS Computer Science</option>
@@ -111,15 +111,15 @@ export default function Home() {
         </div>
         <div className="flex flex-col sm:flex-row items-center">
           <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="address">Address</label>
-          <input value={value.address} name="address" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="text" id="address" />
+          <input value={value.address} name="address" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="text" id="address" required/>
         </div>
         <div className="flex flex-col sm:flex-row items-center">
           <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="pic">Profile Picture</label>
-          <input name="profilePicture" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="file" id="pic" />
+          <input name="profilePicture" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="file" id="pic" required/>
         </div>
         <div className="flex flex-col sm:flex-row items-center">
           <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="cert">Add Intermediate Certificate</label>
-          <input  name="file" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="file" id="cert" />
+          <input name="file" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="file" id="cert" required/>
         </div>
         <div className="text-center">
           <button type="submit" className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Submit</button>
