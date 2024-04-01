@@ -9,12 +9,12 @@ export default function Home() {
     email:"",
     password:"",
     gender:"",
-    number:null,
+    number:0,
     course:"",
     degree:"",
     address:"",
-    profilePicture:null,
-    file:null
+    profilePicture:"",
+    file:""
   }
   let [value,setValue]=useState(start)
   const onChangeHandler = (e) => {
