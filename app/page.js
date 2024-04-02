@@ -18,6 +18,7 @@ export default function Home() {
   }
   let [value,setValue]=useState(start)
   const onChangeHandler = (e) => {
+    
     if (e.target.type === "file") {
       setValue((a) => ({
         ...a,
@@ -37,6 +38,12 @@ export default function Home() {
       value.address===""||
       value.course===""||value.email===""||value.file===null||value.degree===""||value.gender===""||value.password===""||value.profilePicture===null||value.number===null){
       alert("Please Fill all the required fields")
+    }
+    else if(value.password.length<8 ){
+      alert("Password should be 8 characters long")
+    }
+    else if(value.number.toLocaleString().length<11){
+      alert("Numbers should contain 11 digits")
     }
     else{
     setData((a)=>[...a,value])
@@ -118,7 +125,7 @@ export default function Home() {
           <input name="profilePicture" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="file" id="pic" required/>
         </div>
         <div className="flex flex-col sm:flex-row items-center">
-          <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="cert">Add Intermediate Certificate</label>
+          <label className="w-full sm:w-40 mb-2 sm:mb-0 text-left pr-4" htmlFor="cert">Add Intermediate Result Card</label>
           <input name="file" onChange={onChangeHandler} className="w-full sm:w-60 p-2 border border-gray-300 rounded" type="file" id="cert" required/>
         </div>
         <div className="text-center">
